@@ -22,11 +22,82 @@ namespace SuppManagerApp
 
                 var userInput = Console.ReadLine();
 
-                if (userInput == "0")
+              
+                 if (userInput == "1")
+                {
+                    ShowSuppliers();
+                }
+                else if (userInput == "2")
+                {
+                    ShowProducts();
+                }
+                else if (userInput == "3")
+                {
+                    AddSupplier();
+                }
+                else if (userInput == "4")
+                {
+                    AddProduct();
+                }
+                else if (userInput == "5")
+                {
+                    UpdateSupplierStatus();
+                }
+                else if (userInput == "6")
+                {
+                    DeleteSupplier();
+                }
+                else if (userInput == "7")
+                {
+                    DeleteProduct();
+                }
+                else if (userInput == "0")
                 {
                     break;
                 }
+                else
+                {
+                    Console.WriteLine(" Невірний вибір!");
+                }
+
+                
+                Console.ReadKey();
             }
+        }
+
+        private void DeleteProduct()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DeleteSupplier()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UpdateSupplierStatus()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddProduct()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddSupplier()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowProducts()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowSuppliers()
+        {
+            throw new NotImplementedException();
         }
     }
 }
