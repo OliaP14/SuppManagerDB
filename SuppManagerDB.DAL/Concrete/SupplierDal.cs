@@ -8,7 +8,7 @@ public class SupplierDal : ISupplierDal
 
     public Supplier Create(Supplier supplier)
     {
-        SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+        SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
 
         connection.Open();
 
@@ -30,7 +30,7 @@ public class SupplierDal : ISupplierDal
 
     public bool Update(Supplier supplier)
     {
-        SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+        SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
         connection.Open();
         SqlCommand command = connection.CreateCommand();
         command.CommandText = "UPDATE Suppliers SET Name = @Name, Info = @Info, Location = @Location, Status = @Status WHERE SupplierID = @SupplierID";
@@ -45,7 +45,7 @@ public class SupplierDal : ISupplierDal
     }
     public bool Delete(int SupplierID)
     {
-        SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+        SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
         connection.Open();
         SqlCommand command = connection.CreateCommand();
         command.CommandText = "DELETE FROM Suppliers WHERE SupplierID = @SupplierID";
@@ -58,7 +58,7 @@ public class SupplierDal : ISupplierDal
     public List<Supplier> GetAll()
     {
         
-        SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+        SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
         
         connection.Open();
         
@@ -90,7 +90,7 @@ public class SupplierDal : ISupplierDal
     {
         Supplier supplier = null;
 
-        using var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+        using var connection = new SqlConnection(Constants.DB_CONNECTION);
         connection.Open();
 
         using var command = connection.CreateCommand();
@@ -116,7 +116,7 @@ public class SupplierDal : ISupplierDal
 
     public bool UpdateSupplierStatus(Supplier supplier)
     {
-        using var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+        using var connection = new SqlConnection(Constants.DB_CONNECTION);
         connection.Open();
 
         using var command = connection.CreateCommand();

@@ -8,7 +8,7 @@ namespace SuppManagerDB.DAL.Concrete
     {
         public User Create(User user)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
 
             connection.Open();
 
@@ -29,7 +29,7 @@ namespace SuppManagerDB.DAL.Concrete
         public List<User> GetAll()
         {
 
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
 
             connection.Open();
 
@@ -58,7 +58,7 @@ namespace SuppManagerDB.DAL.Concrete
 
         public bool Update(User user)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "UPDATE Users SET UserName  = @UserName, PasswordHash = @PasswordHash, Role = @Role WHERE UserID = @UserID";
@@ -74,7 +74,7 @@ namespace SuppManagerDB.DAL.Concrete
 
         public bool Delete(int UserID)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "DELETE FROM Users WHERE UserID = @UserID";
@@ -88,7 +88,7 @@ namespace SuppManagerDB.DAL.Concrete
         {
             User user = null;
 
-            using var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();

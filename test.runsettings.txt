@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <RunConfiguration>
+    <EnvironmentVariables>
+      <IS_TEST_RUNNING>true</IS_TEST_RUNNING>
+    </EnvironmentVariables>
+  </RunConfiguration>
+</RunSettings>

@@ -4,11 +4,11 @@ using SuppManagerDB.DAL.Interfaces;
 
 namespace SuppManagerDB.DAL.Concrete
 {
-    public class CharacteristicDal
+    public class CharacteristicDal : ICharacteristicDal
     {
         public Characteristic Create(Characteristic characteristic)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             
             connection.Open();
             
@@ -30,7 +30,7 @@ namespace SuppManagerDB.DAL.Concrete
         }
         public List<Characteristic> GetAll()
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             
             connection.Open();
             
@@ -45,7 +45,7 @@ namespace SuppManagerDB.DAL.Concrete
                 Characteristic characteristic = new Characteristic
                 {
                     CharacteristicID = (int)reader["CharacteristicID"],
-                    Power = (string)reader["Power"],
+                    Power = (float)reader["Power"],
                     Material = (string)reader["Material"],
                     Warranty = (string)reader["Warranty"],
                     ReleaseYear = (int)reader["ReleaseYear"],
@@ -59,7 +59,7 @@ namespace SuppManagerDB.DAL.Concrete
         }
         public bool Update(Characteristic characteristic)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = " UPDATE Characteristics SET Power = @Power, Material = @Material, Warranty = @Warranty, ReleaseYear = @ReleaseYear, ProductID = @ProductID WHERE CharacteristicID = @CharacteristicID";
@@ -77,7 +77,7 @@ namespace SuppManagerDB.DAL.Concrete
         }
         public bool Delete(int characteristicID)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "DELETE FROM Characteristics WHERE CharacteristicID = @CharacteristicID";
@@ -91,7 +91,7 @@ namespace SuppManagerDB.DAL.Concrete
         {
             Characteristic characteristic = null;
 
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();
@@ -104,7 +104,7 @@ namespace SuppManagerDB.DAL.Concrete
                 characteristic = new Characteristic
                 {
                     CharacteristicID = (int)reader["CharacteristicID"],
-                    Power = (string)reader["Power"],
+                    Power = (float)reader["Power"],
                     Material = (string)reader["Material"],
                     Warranty = (string)reader["Warranty"],
                     ReleaseYear = (int)reader["ReleaseYear"],
@@ -119,7 +119,7 @@ namespace SuppManagerDB.DAL.Concrete
         {
             var list = new List<Characteristic>();
 
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();
@@ -132,7 +132,7 @@ namespace SuppManagerDB.DAL.Concrete
                 list.Add(new Characteristic
                 {
                     CharacteristicID = Convert.ToInt32(reader["CharacteristicID"]),
-                    Power = reader["Power"] != DBNull.Value ? reader["Power"].ToString() : string.Empty,
+                    Power = reader["Power"] != DBNull.Value ? Convert.ToSingle(reader["Power"]) : 0f,
                     Material = reader["Material"] != DBNull.Value ? reader["Material"].ToString() : string.Empty,
                     Warranty = reader["Warranty"] != DBNull.Value ? reader["Warranty"].ToString() : string.Empty,
                     ReleaseYear = reader["ReleaseYear"] != DBNull.Value ? Convert.ToInt32(reader["ReleaseYear"]) : 0,
@@ -144,5 +144,11 @@ namespace SuppManagerDB.DAL.Concrete
             connection.Close();
             return list;
         }
+
+        public List<Characteristic> GetByProduct(int productId)
+        {
+            return GetByProductId(productId);
+        }
+
     }
 }

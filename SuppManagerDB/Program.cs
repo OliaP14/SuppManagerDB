@@ -1,8 +1,4 @@
-﻿using System;
-using System.Data.SqlClient;
-using Microsoft.Data.SqlClient;
-using SuppManagerDB.DAL;
-using SuppManagerDB.DAL.Concrete;
+﻿using SuppManagerDB.DAL.Concrete;
 using SuppManagerDB.DTO;
 
 namespace SuppManagerApp
@@ -46,6 +42,7 @@ namespace SuppManagerApp
                     "25. Update Contract.\n" +
                     "26. Update Product.\n" +
                     "27. Update Caracteristic.\n" +
+                    "28. Update Manufacturer.\n" +
                     "0. Exit");
 
                 var userInput = Console.ReadLine();
@@ -158,6 +155,10 @@ namespace SuppManagerApp
                 {
                     UpdateCaracteristic();
                 }
+                else if (userInput== "28")
+                {
+                    UpdateManufacturer();
+                }
                 else if (userInput == "0")
                 {
                     return;
@@ -170,6 +171,36 @@ namespace SuppManagerApp
 
             }
             
+        }
+
+        private static void UpdateManufacturer()
+        {
+            var dal = new ManufacturerDal();
+
+            Console.Write("Enter Manufacturer ID to update: ");
+            int manufacturerId = int.Parse(Console.ReadLine() ?? "0");
+
+            var manufacturer = dal.GetById(manufacturerId);
+            if (manufacturer == null)
+            {
+                Console.WriteLine("Manufacturer not found!");
+                return;
+            }
+
+            Console.Write($"Enter new Name (current: {manufacturer.Name}): ");
+            manufacturer.Name = Console.ReadLine() ?? manufacturer.Name;
+
+            Console.Write($"Enter new Country (current: {manufacturer.Country}): ");
+            manufacturer.Country = Console.ReadLine() ?? manufacturer.Country;
+
+            Console.Write($"Enter new Website (current: {manufacturer.Website}): ");
+            manufacturer.Website = Console.ReadLine() ?? manufacturer.Website;
+
+            Console.Write($"Enter new Product ID (current: {manufacturer.ProductID}): ");
+            manufacturer.ProductID = int.Parse(Console.ReadLine() ?? manufacturer.ProductID.ToString());
+
+            bool updated = dal.Update(manufacturer);
+            Console.WriteLine(updated ? "Manufacturer updated successfully." : "Update failed.");
         }
 
         private static void UpdateCaracteristic()
@@ -187,7 +218,11 @@ namespace SuppManagerApp
             }
 
             Console.Write($"Enter new Power (current: {characteristic.Power}): ");
-            characteristic.Power = Console.ReadLine() ?? characteristic.Power;
+            string powerInput = Console.ReadLine() ?? "";
+            if (!string.IsNullOrWhiteSpace(powerInput))
+            {
+                characteristic.Power = float.Parse(powerInput);
+            }
 
             Console.Write($"Enter new Material (current: {characteristic.Material}): ");
             characteristic.Material = Console.ReadLine() ?? characteristic.Material;
@@ -251,22 +286,96 @@ namespace SuppManagerApp
 
         private static void UpdateContract()
         {
-            throw new NotImplementedException();
+            var dal = new ContractDal();
+
+            Console.Write("Enter Contract ID to update: ");
+            int contractId = int.Parse(Console.ReadLine() ?? "0");
+
+            var contract = dal.GetById(contractId);
+            if (contract == null)
+            {
+                Console.WriteLine("Contract not found!");
+                return;
+            }
+
+            Console.Write($"Enter new Supplier ID (current: {contract.SupplierID}): ");
+            contract.SupplierID = int.Parse(Console.ReadLine() ?? contract.SupplierID.ToString());
+
+            Console.Write($"Enter new Contract Number (current: {contract.ContractNumber}): ");
+            contract.ContractNumber = Console.ReadLine() ?? contract.ContractNumber;
+
+            Console.Write($"Enter new Start Date (yyyy-mm-dd) (current: {contract.StartDate:d}): ");
+            contract.StartDate = DateTime.Parse(Console.ReadLine() ?? contract.StartDate.ToString());
+
+            Console.Write($"Enter new End Date (yyyy-mm-dd) (current: {contract.EndDate:d}): ");
+            contract.EndDate = DateTime.Parse(Console.ReadLine() ?? contract.EndDate.ToString());
+
+            Console.Write($"Enter new User ID (current: {contract.UserID}): ");
+            contract.UserID = int.Parse(Console.ReadLine() ?? contract.UserID.ToString());
+
+            bool updated = dal.Update(contract);
+            Console.WriteLine(updated ? "Contract updated successfully." : "Update failed.");
         }
 
         private static void DeleteContract()
         {
-            throw new NotImplementedException();
+            var dal = new ContractDal();
+
+            Console.Write("Enter Contract ID to delete: ");
+            int contractId = int.Parse(Console.ReadLine() ?? "0");
+
+            bool deleted = dal.Delete(contractId);
+            Console.WriteLine(deleted ? "Contract deleted successfully." : "Delete failed.");
         }
 
         private static void AddContract()
         {
-            throw new NotImplementedException();
+            var dal = new ContractDal();
+
+            Console.Write("Enter Supplier ID: ");
+            int supplierId = int.Parse(Console.ReadLine() ?? "0");
+
+            Console.Write("Enter Contract Number: ");
+            string contractNumber = Console.ReadLine() ?? "";
+
+            Console.Write("Enter Start Date (yyyy-mm-dd): ");
+            DateTime startDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Now.ToString());
+
+            Console.Write("Enter End Date (yyyy-mm-dd): ");
+            DateTime endDate = DateTime.Parse(Console.ReadLine() ?? DateTime.Now.ToString());
+
+            Console.Write("Enter User ID: ");
+            int userId = int.Parse(Console.ReadLine() ?? "0");
+
+            var contract = new Contract
+            {
+                SupplierID = supplierId,
+                ContractNumber = contractNumber,
+                StartDate = startDate,
+                EndDate = endDate,
+                UserID = userId
+            };
+
+            var newContract = dal.Create(contract);
+            Console.WriteLine($"Contract added: ID {newContract.ContractID}, ContractNumber {newContract.ContractNumber}");
+
         }
 
         private static void ShowAllContracts()
         {
-            throw new NotImplementedException();
+            var dal = new ContractDal();
+            var contracts = dal.GetAll();
+
+            if (contracts.Count == 0)
+            {
+                Console.WriteLine("No contracts found.");
+                return;
+            }
+
+            foreach (var contract in contracts)
+            {
+                Console.WriteLine($"ID: {contract.ContractID}, SupplierID: {contract.SupplierID}, ContractNumber: {contract.ContractNumber}, StartDate: {contract.StartDate:d}, EndDate: {contract.EndDate:d}, UserID: {contract.UserID}");
+            }
         }
 
         private static void UpdateCategory()
@@ -414,17 +523,58 @@ namespace SuppManagerApp
 
         private static void DeleteManufacturer()
         {
-            throw new NotImplementedException();
+            var dal = new ManufacturerDal();
+
+            Console.Write("Enter Manufacturer ID to delete: ");
+            int manufacturerId = int.Parse(Console.ReadLine() ?? "0");
+
+            bool deleted = dal.Delete(manufacturerId);
+            Console.WriteLine(deleted ? "Manufacturer deleted successfully." : "Delete failed.");
         }
 
         private static void ShowAllManufacturers()
         {
-            throw new NotImplementedException();
+            var dal = new ManufacturerDal();
+            var manufacturers = dal.GetAll();
+
+            if (manufacturers.Count == 0)
+            {
+                Console.WriteLine("No manufacturers found.");
+                return;
+            }
+
+            foreach (var m in manufacturers)
+            {
+                Console.WriteLine($"ID: {m.ManufacturerID}, Name: {m.Name}, Country: {m.Country}, Website: {m.Website}, ProductID: {m.ProductID}");
+            }
         }
 
         private static void AddManufacturer()
         {
-            throw new NotImplementedException();
+            var dal = new ManufacturerDal();
+
+            Console.Write("Enter Name: ");
+            string name = Console.ReadLine() ?? "";
+
+            Console.Write("Enter Country: ");
+            string country = Console.ReadLine() ?? "";
+
+            Console.Write("Enter Website: ");
+            string website = Console.ReadLine() ?? "";
+
+            Console.Write("Enter Product ID: ");
+            int productId = int.Parse(Console.ReadLine() ?? "0");
+
+            var manufacturer = new Manufacturer
+            {
+                Name = name,
+                Country = country,
+                Website = website,
+                ProductID = productId
+            };
+
+            var newManufacturer = dal.Create(manufacturer);
+            Console.WriteLine($"Manufacturer added: ID {newManufacturer.ManufacturerID}, Name: {newManufacturer.Name}, Country: {newManufacturer.Country}, Website: {newManufacturer.Website}, ProductID: {newManufacturer.ProductID}");
         }
 
         private static void DeleteCharacteristic()
@@ -467,7 +617,7 @@ namespace SuppManagerApp
             int productId = int.Parse(Console.ReadLine() ?? "0");
 
             Console.Write("Enter Power: ");
-            string power = Console.ReadLine() ?? "";
+            float power = float.Parse(Console.ReadLine() ?? "0");
 
             Console.Write("Enter Material: ");
             string material = Console.ReadLine() ?? "";

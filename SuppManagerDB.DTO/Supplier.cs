@@ -1,5 +1,4 @@
-﻿
-namespace SuppManagerDB.DTO
+﻿namespace SuppManagerDB.DTO
 {
     public class Supplier
     {

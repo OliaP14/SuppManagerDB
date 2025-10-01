@@ -8,7 +8,7 @@ namespace SuppManagerDB.DAL.Concrete
     {
         public Category Create(Category category)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
 
             connection.Open();
 
@@ -25,7 +25,7 @@ namespace SuppManagerDB.DAL.Concrete
         }
         public List<Category> GetAll()
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT CategoryID, CategoryName FROM Categories";
@@ -47,7 +47,7 @@ namespace SuppManagerDB.DAL.Concrete
 
         public bool Update(Category category)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "UPDATE Categories SET CategoryName = @CategoryName WHERE CategoryID = @CategoryID";
@@ -62,7 +62,7 @@ namespace SuppManagerDB.DAL.Concrete
 
         public bool Delete(int CategoryID)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "DELETE FROM Categories WHERE CategoryID = @CategoryID";
@@ -77,7 +77,7 @@ namespace SuppManagerDB.DAL.Concrete
         {
             Category category = null;
 
-            using var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();

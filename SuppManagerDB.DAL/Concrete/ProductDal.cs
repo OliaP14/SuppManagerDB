@@ -8,7 +8,7 @@ namespace SuppManagerDB.DAL.Concrete
     {
         public Product Create(Product product)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
 
             connection.Open();
 
@@ -31,10 +31,11 @@ namespace SuppManagerDB.DAL.Concrete
 
         public bool Update(Product product)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "UPDATE Products SET Name = @Name, Model = @Model, Number = @Number, Price = @Price, SupplierID = @SupplierID, CategoryID = @CategoryID WHERE ProductID = @ProductID";
+            command.Parameters.AddWithValue("@ProductID", product.ProductID);
             command.Parameters.AddWithValue("@Name", product.Name);
             command.Parameters.AddWithValue("@Model", product.Model);
             command.Parameters.AddWithValue("@Number", product.Number);
@@ -49,7 +50,7 @@ namespace SuppManagerDB.DAL.Concrete
 
         public bool Delete(int ProductID)
         {
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
             command.CommandText = "DELETE FROM Products WHERE ProductID = @ProductID";
@@ -62,7 +63,7 @@ namespace SuppManagerDB.DAL.Concrete
         public List<Product> GetAll()
         {
 
-            SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
 
             connection.Open();
 
@@ -97,7 +98,7 @@ namespace SuppManagerDB.DAL.Concrete
 
             Product product = null;
 
-            using var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();
@@ -109,13 +110,13 @@ namespace SuppManagerDB.DAL.Concrete
             {
                 product = new Product
                 {
-                    ProductID = (int)reader["ProductID"],
-                    Name = (string)reader["Name"],
-                    Model = (string)reader["Model"],
-                    Number = (string)reader["Number"],
-                    Price = (decimal)reader["Price"],
-                    SupplierID = (int)reader["SupplierID"],
-                    CategoryID = (int)reader["CategoryID"]
+                    ProductID = reader["ProductID"] != DBNull.Value ? Convert.ToInt32(reader["ProductID"]) : 0,
+                    Name = reader["Name"] != DBNull.Value ? reader["Name"].ToString()! : string.Empty,
+                    Model = reader["Model"] != DBNull.Value ? reader["Model"].ToString()! : string.Empty,
+                    Number = reader["Number"] != DBNull.Value ? reader["Number"].ToString()! : string.Empty,
+                    Price = reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0,
+                    SupplierID = reader["SupplierID"] != DBNull.Value ? Convert.ToInt32(reader["SupplierID"]) : 0,
+                    CategoryID = reader["CategoryID"] != DBNull.Value ? Convert.ToInt32(reader["CategoryID"]) : 0
                 };
             }
 
@@ -126,7 +127,7 @@ namespace SuppManagerDB.DAL.Concrete
         {
             var products = new List<Product>();
 
-            using var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();
@@ -138,13 +139,13 @@ namespace SuppManagerDB.DAL.Concrete
             {
                 products.Add(new Product
                 {
-                    ProductID = (int)reader["ProductID"],
-                    Name = (string)reader["Name"],
-                    Model = (string)reader["Model"],
-                    Number = (string)reader["Number"],
-                    Price = (decimal)reader["Price"],
-                    SupplierID = (int)reader["SupplierID"],
-                    CategoryID = (int)reader["CategoryID"]
+                    ProductID = reader["ProductID"] != DBNull.Value ? Convert.ToInt32(reader["ProductID"]) : 0,
+                    Name = reader["Name"] != DBNull.Value ? reader["Name"].ToString()! : string.Empty,
+                    Model = reader["Model"] != DBNull.Value ? reader["Model"].ToString()! : string.Empty,
+                    Number = reader["Number"] != DBNull.Value ? reader["Number"].ToString()! : string.Empty,
+                    Price = reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0,
+                    SupplierID = reader["SupplierID"] != DBNull.Value ? Convert.ToInt32(reader["SupplierID"]) : 0,
+                    CategoryID = reader["CategoryID"] != DBNull.Value ? Convert.ToInt32(reader["CategoryID"]) : 0
                 });
             }
 
@@ -155,7 +156,7 @@ namespace SuppManagerDB.DAL.Concrete
         {
             var products = new List<Product>();
 
-            using var connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True");
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();
@@ -167,13 +168,13 @@ namespace SuppManagerDB.DAL.Concrete
             {
                 products.Add(new Product
                 {
-                    ProductID = (int)reader["ProductID"],
-                    Name = (string)reader["Name"],
-                    Model = (string)reader["Model"],
-                    Number = (string)reader["Number"],
-                    Price = (decimal)reader["Price"],
-                    SupplierID = (int)reader["SupplierID"],
-                    CategoryID = (int)reader["CategoryID"]
+                    ProductID = reader["ProductID"] != DBNull.Value ? Convert.ToInt32(reader["ProductID"]) : 0,
+                    Name = reader["Name"] != DBNull.Value ? reader["Name"].ToString()! : string.Empty,
+                    Model = reader["Model"] != DBNull.Value ? reader["Model"].ToString()! : string.Empty,
+                    Number = reader["Number"] != DBNull.Value ? reader["Number"].ToString()! : string.Empty,
+                    Price = reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0,
+                    SupplierID = reader["SupplierID"] != DBNull.Value ? Convert.ToInt32(reader["SupplierID"]) : 0,
+                    CategoryID = reader["CategoryID"] != DBNull.Value ? Convert.ToInt32(reader["CategoryID"]) : 0
                 });
             }
 

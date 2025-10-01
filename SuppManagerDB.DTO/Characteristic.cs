@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuppManagerDB.DTO
+﻿namespace SuppManagerDB.DTO
 {
     public class Characteristic
     {
         public int CharacteristicID { get; set; }
-        public string Power { get; set; } = string.Empty;
+        public float Power { get; set; }
         public string Material { get; set; } = string.Empty;
         public string Warranty { get; set; }
         public int ReleaseYear { get; set; }
