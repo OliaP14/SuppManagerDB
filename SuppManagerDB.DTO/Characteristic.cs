@@ -11,7 +11,7 @@ namespace SuppManagerDB.DTO
         public int CharacteristicID { get; set; }
         public string Power { get; set; } = string.Empty;
         public string Material { get; set; } = string.Empty;
-        public int Warranty { get; set; }
+        public string Warranty { get; set; }
         public int ReleaseYear { get; set; }
 
         // Foreign Key

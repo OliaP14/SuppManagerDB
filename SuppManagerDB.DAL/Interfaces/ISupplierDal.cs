@@ -1,5 +1,4 @@
 ﻿using SuppManagerDB.DTO;
-using System.Collections.Generic;
 
 namespace SuppManagerDB.DAL.Interfaces
 {
@@ -8,7 +7,8 @@ namespace SuppManagerDB.DAL.Interfaces
         Supplier Create(Supplier supplier);
         
         List<Supplier> GetAll();
+        Supplier GetById(int SupplierID);
         bool Update(Supplier supplier);
-        bool Delete(int id);
+        bool Delete(int SupplierID);
     }
 }
