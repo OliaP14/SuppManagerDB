@@ -11,5 +11,7 @@
         // Foreign Keys
         public int SupplierID { get; set; }
         public int CategoryID { get; set; }
+
+        public int ManufacturerID { get; set; }
     }
 }

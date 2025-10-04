@@ -13,12 +13,11 @@ namespace SuppManagerDB.DAL.Concrete
             connection.Open();
 
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "INSERT INTO Manufacturers (Name, Country, Website, ProductID) OUTPUT INSERTED.ManufacturerID VALUES (@Name, @Country, @Website, @ProductID)";
+            command.CommandText = "INSERT INTO Manufacturers (Name, Country, Website) OUTPUT INSERTED.ManufacturerID VALUES (@Name, @Country, @Website)";
 
             command.Parameters.AddWithValue("@Name", manufacturer.Name);
             command.Parameters.AddWithValue("@Country", manufacturer.Country);
             command.Parameters.AddWithValue("@Website", manufacturer.Website);
-            command.Parameters.AddWithValue("@ProductID", manufacturer.ProductID);
 
             manufacturer.ManufacturerID = (int)command.ExecuteScalar();
             connection.Close();
@@ -32,7 +31,7 @@ namespace SuppManagerDB.DAL.Concrete
 
             SqlCommand command = connection.CreateCommand();
 
-            command.CommandText = "SELECT ManufacturerID, Name, Country, Website, ProductID FROM Manufacturers";
+            command.CommandText = "SELECT ManufacturerID, Name, Country, Website FROM Manufacturers";
 
             SqlDataReader reader = command.ExecuteReader();
 
@@ -46,7 +45,6 @@ namespace SuppManagerDB.DAL.Concrete
                     Name = (string)reader["Name"],
                     Country = (string)reader["Country"],
                     Website = (string)reader["Website"],
-                    ProductID = (int)reader["ProductID"]
                 };
                 manufacturers.Add(manufacturer);
             }
@@ -63,12 +61,12 @@ namespace SuppManagerDB.DAL.Concrete
 
             SqlCommand command = connection.CreateCommand();
 
-            command.CommandText = "UPDATE Manufacturers SET Name = @Name, Country = @Country, Website = @Website, ProductID = @ProductID WHERE ManufacturerID = @ManufacturerID";
+            command.CommandText = "UPDATE Manufacturers SET Name = @Name, Country = @Country, Website = @Website WHERE ManufacturerID = @ManufacturerID";
+
 
             command.Parameters.AddWithValue("@Name", manufacturer.Name);
             command.Parameters.AddWithValue("@Country", manufacturer.Country);
-            command.Parameters.AddWithValue("@Website", manufacturer.Website);
-            command.Parameters.AddWithValue("@ProductID", manufacturer.ProductID);
+            command.Parameters.AddWithValue("@Website", manufacturer.Website);            
             command.Parameters.AddWithValue("@ManufacturerID", manufacturer.ManufacturerID);
 
             int rowsAffected = command.ExecuteNonQuery();
@@ -96,7 +94,7 @@ namespace SuppManagerDB.DAL.Concrete
             SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
             SqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT ManufacturerID, Name, Country, Website, ProductID FROM Manufacturers WHERE ManufacturerID = @ManufacturerID";
+            command.CommandText = "SELECT ManufacturerID, Name, Country, Website FROM Manufacturers WHERE ManufacturerID = @ManufacturerID";
             command.Parameters.AddWithValue("@ManufacturerID", ManufacturerID);
             SqlDataReader reader = command.ExecuteReader();
             Manufacturer manufacturer = null;
@@ -108,7 +106,6 @@ namespace SuppManagerDB.DAL.Concrete
                     Name = (string)reader["Name"],
                     Country = (string)reader["Country"],
                     Website = (string)reader["Website"],
-                    ProductID = (int)reader["ProductID"]
                 };
             }
             reader.Close();
@@ -117,36 +114,5 @@ namespace SuppManagerDB.DAL.Concrete
 
         }
 
-        public List<Manufacturer> GetByProduct(int productId)
-        {
-            var manufacturers = new List<Manufacturer>();
-
-            using (SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION))
-            {
-                connection.Open();
-
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT ManufacturerID, Name, Country, Website, ProductID FROM Manufacturers WHERE ProductID = @ProductID";
-                command.Parameters.AddWithValue("@ProductID", productId);
-
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Manufacturer manufacturer = new Manufacturer
-                        {
-                            ManufacturerID = (int)reader["ManufacturerID"],
-                            Name = (string)reader["Name"],
-                            Country = (string)reader["Country"],
-                            Website = (string)reader["Website"],
-                            ProductID = (int)reader["ProductID"]
-                        };
-                        manufacturers.Add(manufacturer);
-                    }
-                }
-                connection.Close();
-                return manufacturers;
-            }
-        }
     }
 }

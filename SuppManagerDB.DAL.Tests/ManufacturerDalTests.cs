@@ -56,7 +56,7 @@ namespace SuppManagerDB.DAL.Tests
         [TearDown]
         public void TearDown()
         {
-            var manufacturers = _manufacturerDal.GetAll().Where(m => m.ProductID == _testProductId).ToList();
+            var manufacturers = _manufacturerDal.GetAll().Where(m => m.Name.Contains("Test")).ToList();
             foreach (var manufacturer in manufacturers)
             {
                 _manufacturerDal.Delete(manufacturer.ManufacturerID);
@@ -79,15 +79,14 @@ namespace SuppManagerDB.DAL.Tests
             {
                 Name = "Test Manufacturer",
                 Country = "Test Country",
-                Website = "https://test.com",
-                ProductID = _testProductId
+                Website = "https://test.com"
             };
 
             var created = _manufacturerDal.Create(manufacturer);
 
             Assert.Greater(created.ManufacturerID, 0);
             Assert.AreEqual("Test Manufacturer", created.Name);
-            Assert.AreEqual(_testProductId, created.ProductID);
+            
 
             // Cleanup
             _manufacturerDal.Delete(created.ManufacturerID);
@@ -100,8 +99,7 @@ namespace SuppManagerDB.DAL.Tests
             {
                 Name = "GetById Manufacturer",
                 Country = "Country",
-                Website = "https://getbyid.com",
-                ProductID = _testProductId
+                Website = "https://getbyid.com"
             };
 
             var created = _manufacturerDal.Create(manufacturer);
@@ -126,8 +124,7 @@ namespace SuppManagerDB.DAL.Tests
             {
                 Name = "ToUpdate",
                 Country = "Country",
-                Website = "https://update.com",
-                ProductID = _testProductId
+                Website = "https://update.com"
             };
 
             var created = _manufacturerDal.Create(manufacturer);
@@ -157,8 +154,7 @@ namespace SuppManagerDB.DAL.Tests
             {
                 Name = "ToDelete",
                 Country = "Country",
-                Website = "https://delete.com",
-                ProductID = _testProductId
+                Website = "https://delete.com"
             };
 
             var created = _manufacturerDal.Create(manufacturer);
@@ -177,8 +173,7 @@ namespace SuppManagerDB.DAL.Tests
             {
                 Name = "GetAllTest",
                 Country = "Country",
-                Website = "https://getall.com",
-                ProductID = _testProductId
+                Website = "https://getall.com"
             };
 
             var created = _manufacturerDal.Create(manufacturer);

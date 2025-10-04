@@ -15,5 +15,8 @@ namespace SuppManagerDB.DAL.Interfaces
         List<Product> GetBySupplier(int supplierId);
         // Додатково: отримаємо товари по категорії
         List<Product> GetByCategory(int categoryId);
+
+        // Додатково: всі виробники конкретного продукту
+        List<Product> GetByProduct(int manufacturerId);
     }
 }

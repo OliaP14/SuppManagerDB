@@ -11,7 +11,6 @@ namespace SuppManagerDB.DAL.Interfaces
         bool Update(Manufacturer manufacturer);
         bool Delete(int id);
 
-        // Додатково: всі виробники конкретного продукту
-        List<Manufacturer> GetByProduct(int productId);
+        
     }
 }

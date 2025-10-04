@@ -196,8 +196,6 @@ namespace SuppManagerApp
             Console.Write($"Enter new Website (current: {manufacturer.Website}): ");
             manufacturer.Website = Console.ReadLine() ?? manufacturer.Website;
 
-            Console.Write($"Enter new Product ID (current: {manufacturer.ProductID}): ");
-            manufacturer.ProductID = int.Parse(Console.ReadLine() ?? manufacturer.ProductID.ToString());
 
             bool updated = dal.Update(manufacturer);
             Console.WriteLine(updated ? "Manufacturer updated successfully." : "Update failed.");
@@ -273,12 +271,16 @@ namespace SuppManagerApp
             Console.Write($"Enter new CategoryID (current: {product.CategoryID}): ");
             int categoryId = int.Parse(Console.ReadLine() ?? product.CategoryID.ToString());
 
+            Console.Write($"Enter new ManufacturerID (current: {product.ManufacturerID}): ");
+            int manufacturerId = int.Parse(Console.ReadLine() ?? product.ManufacturerID.ToString());
+
             product.Name = name;
             product.Model = model;
             product.Number = number;
             product.Price = price;
             product.SupplierID = supplierId;
             product.CategoryID = categoryId;
+            product.ManufacturerID = manufacturerId;
 
             bool updated = dal.Update(product);
             Console.WriteLine(updated ? "Product updated successfully." : "Update failed.");
@@ -545,7 +547,7 @@ namespace SuppManagerApp
 
             foreach (var m in manufacturers)
             {
-                Console.WriteLine($"ID: {m.ManufacturerID}, Name: {m.Name}, Country: {m.Country}, Website: {m.Website}, ProductID: {m.ProductID}");
+                Console.WriteLine($"ID: {m.ManufacturerID}, Name: {m.Name}, Country: {m.Country}, Website: {m.Website}");
             }
         }
 
@@ -569,12 +571,11 @@ namespace SuppManagerApp
             {
                 Name = name,
                 Country = country,
-                Website = website,
-                ProductID = productId
+                Website = website
             };
 
             var newManufacturer = dal.Create(manufacturer);
-            Console.WriteLine($"Manufacturer added: ID {newManufacturer.ManufacturerID}, Name: {newManufacturer.Name}, Country: {newManufacturer.Country}, Website: {newManufacturer.Website}, ProductID: {newManufacturer.ProductID}");
+            Console.WriteLine($"Manufacturer added: ID {newManufacturer.ManufacturerID}, Name: {newManufacturer.Name}, Country: {newManufacturer.Country}, Website: {newManufacturer.Website}");
         }
 
         private static void DeleteCharacteristic()
@@ -701,6 +702,9 @@ namespace SuppManagerApp
             Console.Write("Enter CategoryID: ");
             int categoryId = int.Parse(Console.ReadLine() ?? "0");
 
+            Console.Write("Enter ManufacturerID: ");
+            int manufacturerId = int.Parse(Console.ReadLine() ?? "0");
+
             var product = new Product
             {
                 Name = name,
@@ -708,7 +712,8 @@ namespace SuppManagerApp
                 Number = number,
                 Price = price,
                 SupplierID = supplierId,
-                CategoryID = categoryId
+                CategoryID = categoryId,
+                ManufacturerID = manufacturerId
             };
 
             var newProduct = dal.Create(product);
@@ -738,7 +743,7 @@ namespace SuppManagerApp
 
             foreach (var product in products)
             {
-                Console.WriteLine($"ID: {product.ProductID}, Name: {product.Name}, Model: {product.Model}, Number: {product.Number}, Price: {product.Price}, SupplierID: {product.SupplierID}, CategoryID: {product.CategoryID}");
+                Console.WriteLine($"ID: {product.ProductID}, Name: {product.Name}, Model: {product.Model}, Number: {product.Number}, Price: {product.Price}, SupplierID: {product.SupplierID}, CategoryID: {product.CategoryID}, ManufacturerID: { product.ManufacturerID}");
             }
         }
 
