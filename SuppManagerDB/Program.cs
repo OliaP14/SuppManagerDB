@@ -15,111 +15,117 @@ namespace SuppManagerApp
             while (true)
             {
                 Console.WriteLine("\nPlease select an option:\n" +
-                    "1. Show all suppliers.\n" +
-                    "2. Show all products.\n" +
-                    "3. Add Supplier.\n" +
-                    "4. Add Product.\n" +
-                    "5. Update Supplier Status.\n" +
-                    "6. Delete Supplier.\n" +
-                    "7. Delete Product.\n" +
-                    "8. Add Characteristic to Product.\n" +
-                    "9. Show all characteristics of a Product.\n" +
-                    "10. Delete Characteristic from Product.\n" +
-                    "11. Add Manufacturer.\n" +
-                    "12. Show all Manufacturers.\n" +
-                    "13. Delete Manufacturer.\n" +
-                    "14. Show all users.\n" +
-                    "15. Add User.\n" +
-                    "16. Update User.\n" +
-                    "17. Delete User.\n" +
-                    "18.Show all categories.\n" +
-                    "19. Add Category.\n" +
+                    "1. Show all users.\n" +
+                    "2. Add User.\n" +
+                    "3. Update User.\n" +
+                    "4. Delete User.\n" +
+                    "=============================\n" +
+                    "5. Show all suppliers.\n" +
+                    "6. Add Supplier\n" +
+                    "7. Update Supplier Status.\n" +
+                    "8. Delete Supplier. \n" +
+                    "=============================\n" +
+                    "9. Show all products.\n" +
+                    "10. Add Product.\n" +
+                    "11. Update Product.\n" +
+                    "12. Delete Product.\n" +
+                    "=============================\n" +
+                    "13. Show all caracteristics of a Product.\n" +
+                    "14. Add Caracteristic to Product.\n" +
+                    "15. Update Caracteristic.\n" +
+                    "16. Delete Caracteristic from Product.\n" +
+                    "=============================\n" +
+                    "17. Show all categories.\n" +
+                    "18. Add Category.\n" +
+                    "19. Update Category.\n" +
                     "20. Delete Category.\n" +
-                    "21. Update Category.\n" +
-                    "22. Show all contracts.\n" +
-                    "23. Add Contract.\n" +
-                    "24. Delete Contract.\n" +
-                    "25. Update Contract.\n" +
-                    "26. Update Product.\n" +
-                    "27. Update Caracteristic.\n" +
-                    "28. Update Manufacturer.\n" +
+                    "=============================\n" +
+                    "21. Show all Manufacturers.\n" +
+                    "22. Add Manufacturer.\n" +
+                    "23. Update Manufacturer.\n" +
+                    "24. Delete Manufacturer.\n" +
+                    "=============================\n" +
+                    "25. Show all contracts.\n" +
+                    "26. Add Contract.\n" +
+                    "27. Update Contract.\n" +
+                    "28. Delete Contract.\n" +
                     "0. Exit");
 
                 var userInput = Console.ReadLine();
 
-                if (userInput == "1")
+                if (userInput == "5")
                 {
                     ShowAllSuppliers();
                 }
-                else if (userInput == "2")
+                else if (userInput == "9")
                 {
                     ShowAllProducts();
                 }
-                else if (userInput == "3")
+                else if (userInput == "6")
                 {
                     AddSupplier();
                 }
-                else if (userInput == "4")
+                else if (userInput == "10")
                 {
                     AddProduct();
                 }
-                else if (userInput == "5")
+                else if (userInput == "7")
                 {
                     UpdateSupplierStatus();
                 }
-                else if (userInput == "6")
+                else if (userInput == "8")
                 {
                     DeleteSupplier();
                 }
-                else if (userInput == "7")
+                else if (userInput == "12")
                 {
                     DeleteProduct();
                 }
-                else if (userInput == "8")
+                else if (userInput == "14")
                 {
                     AddCharacteristic();
                 }
-                else if (userInput == "9")
+                else if (userInput == "13")
                 {
                     ShowAllCharacteristics();
                 }
-                else if (userInput == "10")
+                else if (userInput == "16")
                 {
                     DeleteCharacteristic();
                 }
-                else if (userInput == "11")
+                else if (userInput == "22")
                 {
                     AddManufacturer();
                 }
-                else if (userInput == "12")
+                else if (userInput == "21")
                 {
                     ShowAllManufacturers();
                 }
-                else if (userInput == "13")
+                else if (userInput == "24")
                 {
                     DeleteManufacturer();
                 }
-                else if (userInput == "14")
+                else if (userInput == "1")
                 {
                     ShowAllUsers();
                 }
-                else if (userInput == "15")
+                else if (userInput == "2")
                 {
                     AddUser();
                 }
-                else if (userInput == "16")
+                else if (userInput == "3")
                 {
                     UpdateUser(); 
                 }
-                else if (userInput == "17")
+                else if (userInput == "4")
                 {
                     DeleteUser();    
                 }
-                else if (userInput == "18")
+                else if (userInput == "17")
                 {
                     ShowAllCategories();                   
                 }
-                else if (userInput == "19")
+                else if (userInput == "18")
                 {
                     AddCategory();                    
                 }
@@ -127,35 +133,35 @@ namespace SuppManagerApp
                 {
                     DeleteCategory();                    
                 }
-                else if (userInput == "21")
+                else if (userInput == "19")
                 {
                     UpdateCategory();                    
                 }
-                else if (userInput == "22")
+                else if (userInput == "25")
                 {
                     ShowAllContracts();                    
                 }
-                else if (userInput == "23")
+                else if (userInput == "26")
                 {
                     AddContract();                    
                 }
-                else if (userInput == "24")
+                else if (userInput == "28")
                 {
                     DeleteContract();                    
                 }
-                else if (userInput == "25")
+                else if (userInput == "27")
                 {
                     UpdateContract();                    
                 }
-                else if (userInput == "26")
+                else if (userInput == "11")
                 {
                     UpdateProduct();
                 }
-                else if (userInput == "27")
+                else if (userInput == "15")
                 {
                     UpdateCaracteristic();
                 }
-                else if (userInput== "28")
+                else if (userInput== "23")
                 {
                     UpdateManufacturer();
                 }
@@ -503,9 +509,9 @@ namespace SuppManagerApp
 
             var user = new User
             {
-                UserName = "Anna",
-                PasswordHash = "123an",
-                Role = "Admin"
+                UserName = userName,
+                PasswordHash = passwordHash,
+                Role = role
             };
 
             var newUser = dal.Create(user);
@@ -724,17 +730,31 @@ namespace SuppManagerApp
         {
             var dal = new SupplierDal();
 
-            var oldSupplier = new Supplier
-            {
-                Name = "ASH mobile",
-                Info = "+380931267001",
-                Location = "Kyiv",
-                Status = true
-            };
-            var newSupplier = dal.Create(oldSupplier);
+            Console.Write("Enter Supplier Name: ");
+            string name = Console.ReadLine() ?? "";
 
-            Console.WriteLine($"Inserted Supplier: {newSupplier.SupplierID}: {newSupplier.Name} - {newSupplier.Info} - {newSupplier.Location} - {(newSupplier.Status ? "Active" : "Inactive")}");
+            Console.Write("Enter Supplier Info (e.g., phone number or email): ");
+            string info = Console.ReadLine() ?? "";
+
+            Console.Write("Enter Supplier Location: ");
+            string location = Console.ReadLine() ?? "";
+
+            Console.Write("Is Supplier Active? (true/false): ");
+            bool status = bool.Parse(Console.ReadLine() ?? "true");
+
+            var supplier = new Supplier
+            {
+                Name = name,
+                Info = info,
+                Location = location,
+                Status = status
+            };
+
+            var newSupplier = dal.Create(supplier);
+
+            Console.WriteLine($"Supplier added: ID {newSupplier.SupplierID}, Name: {newSupplier.Name}, Info: {newSupplier.Info}, Location: {newSupplier.Location}, Status: {(newSupplier.Status ? "Active" : "Inactive")}");
         }
+
 
         private static void ShowAllProducts()
         {
