@@ -20,11 +20,11 @@ namespace SuppManagerDB.WPF.Windows
 
         private void OpenProducts_Click(object sender, RoutedEventArgs e)
         {
-            var vm = DataContext as SupplierDetailsViewModel;  // ✔️ Отримуємо ViewModel
+            var vm = DataContext as SupplierDetailsViewModel;  // Отримую ViewModel
             if (vm == null || vm.Supplier == null)
                 return;
 
-            var window = new SupplierProductsWindow(vm.Supplier.SupplierID); // ✔️ Передаємо ID
+            var window = new SupplierProductsWindow(vm.Supplier.SupplierID); // Передається ID
             window.ShowDialog();
         }
 

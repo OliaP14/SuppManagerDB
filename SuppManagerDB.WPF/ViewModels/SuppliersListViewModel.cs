@@ -11,7 +11,7 @@ namespace SuppManagerDB.WPF.ViewModels
     public class SuppliersListViewModel : INotifyPropertyChanged
     {
         private readonly ISupplierManager _supplierManager;
-        private readonly IProductManager _productManager;   //+
+        private readonly IProductManager _productManager;   
 
 
         public ObservableCollection<Supplier> Suppliers { get; set; }
@@ -25,23 +25,23 @@ namespace SuppManagerDB.WPF.ViewModels
         public ICommand UnblockSupplierCommand { get; set; }
         public ICommand OpenDetailsCommand { get; set; }
         public ICommand AddSupplierCommand { get; set; }
-        public ICommand AddProductCommand { get; set; }   //+
+        public ICommand AddProductCommand { get; set; }   
 
         public SuppliersListViewModel(ISupplierManager supplierManager, IProductManager productManager)
         {
             _supplierManager = supplierManager;
-            _productManager = productManager;   //+
+            _productManager = productManager;   
 
-            // 1. Завантажуємо список постачальників
+            // 1. Завантажую список постачальників
             Suppliers = new ObservableCollection<Supplier>(_supplierManager.GetAll());
 
-            // 2. підключаємо команди:
+            // 2. підключаю команди:
             SearchSupplierCommand = new SearchSupplierCommand(this, _supplierManager);
             BlockSupplierCommand = new BlockSupplierCommand(this, _supplierManager);
             UnblockSupplierCommand = new UnblockSupplierCommand(this, _supplierManager);
             OpenDetailsCommand = new OpenSupplierDetailsCommand(this, _supplierManager);
             AddSupplierCommand = new AddSupplierCommand(this, _supplierManager);
-            AddProductCommand = new AddProductCommand(this, _supplierManager, _productManager);   //+
+            AddProductCommand = new AddProductCommand(this, _supplierManager, _productManager);   
 
 
         }

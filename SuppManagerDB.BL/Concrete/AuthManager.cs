@@ -29,7 +29,7 @@ namespace SuppManagerDB.BL.Concrete
             if (!CompareHashes(computedHash, user.PasswordHash))
                 return null;
 
-            // 🔥 ДОДАЄМО ПРИВІЛЕГІЮ (РОЛЬ)
+            // Додаю привілею роль користувача
             var privileges = _privDal.GetPrivilegesForUser(user.UserID);
             user.Privileges = privileges; 
 
@@ -55,7 +55,7 @@ namespace SuppManagerDB.BL.Concrete
             byte[] bytes = Encoding.Unicode.GetBytes(combined);
             var hash = sha.ComputeHash(bytes);
 
-            // 🔥 Debug print HEX
+            // print HEX
             var consoleHash = BitConverter.ToString(hash).Replace("-", "");
 
             return hash;

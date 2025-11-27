@@ -11,7 +11,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 📌 Поля вводу -->
+        <!-- Поля вводу -->
         <StackPanel>
 
             <TextBlock Text="Назва товару" Margin="0,0,0,3" FontSize="14"/>
@@ -39,7 +39,7 @@
                       Margin="0,0,0,10" RenderTransformOrigin="0.503,-0.562" SelectionChanged="cmbManufacturer_SelectionChanged"/>
         </StackPanel>
 
-        <!-- 🎛 Кнопки -->
+        <!--  Кнопки -->
         <StackPanel Grid.Row="1" Orientation="Horizontal"
                     HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button Content="Створити" Width="120" Height="35"

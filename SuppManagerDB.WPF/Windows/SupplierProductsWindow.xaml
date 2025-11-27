@@ -11,14 +11,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 📌 Таблиця товарів -->
+        <!-- Таблиця товарів -->
         <DataGrid x:Name="ProductsGrid"
                   AutoGenerateColumns="True"
                   IsReadOnly="True"
                   SelectionMode="Single"
                   Margin="0,0,0,10"/>
 
-        <!-- 📌 Кнопки -->
+        <!--  Кнопки -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Додати товар" Width="140" Height="35"
                     Background="#006600" Foreground="White"

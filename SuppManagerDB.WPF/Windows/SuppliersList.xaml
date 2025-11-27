@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- 🔍 ПОШУК -->
+        <!-- ПОШУК -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 0 0 10">
             <TextBox x:Name="txtSearch"
                      Width="250" Height="28" Margin="0 0 10 0" FontSize="14"
@@ -24,7 +24,7 @@
                     Background="#003366" Foreground="White"
                     Command="{Binding SearchSupplierCommand}"/>
 
-            
+            <!-- Кнопка -->
             <Button
             Content="Вийти"
             Width="101" Height="38"
@@ -35,10 +35,10 @@
             Click="Logout_Click"/>
             
 
-            <!-- Кнопка -->
+            
         </StackPanel>
 
-        <!-- 📋 ТАБЛИЦЯ -->
+        <!-- ТАБЛИЦЯ -->
         <DataGrid x:Name="dgSuppliers" Grid.Row="1"
                   AutoGenerateColumns="False"
                   FontSize="14"
@@ -54,7 +54,7 @@
                 <DataGridTextColumn Header="Локація" Binding="{Binding Location}" Width="150"/>
                 <DataGridCheckBoxColumn Header="Активний" Binding="{Binding Status}" Width="100"/>
 
-                <!-- 🎯 КНОПКИ ДІЙ -->
+                <!--  КНОПКИ ДІЙ -->
                 <DataGridTemplateColumn Header="Дії" Width="180">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -83,7 +83,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- ➕ ДОДАТИ НОВОГО -->
+        <!-- ДОДАВАННЯ НОВОГО -->
         <Button x:Name="btnAdd" Grid.Row="2" Content="Додати"
         Width="120" Height="35"
         HorizontalAlignment="Right"

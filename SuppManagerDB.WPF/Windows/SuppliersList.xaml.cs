@@ -15,11 +15,11 @@ namespace SuppManagerDB.WPF.Windows
             
             InitializeComponent();
 
-            // 🔥 Отримуємо Auth через DI
+            // Отримую Auth через DI
             _auth = App.Services.GetService(typeof(IAuthManager)) as IAuthManager;
 
 
-            // 🔐 Перевіряємо роль
+            // Перевіряю роль
             if (!_auth.HasPrivilege(App.CurrentUser.UserID, "SupplierManager"))
             {
                 MessageBox.Show("Доступ заборонено!", "Помилка");
@@ -27,7 +27,7 @@ namespace SuppManagerDB.WPF.Windows
                 return;
             }
 
-            // ✔ Якщо все ок — підключаємо ViewModel
+            // підключаю ViewModel
             var supplierManager = App.Services.GetService(typeof(ISupplierManager)) as ISupplierManager;
             // + отримуємо ProductManager
             var productManager = App.Services.GetService(typeof(IProductManager)) as IProductManager;

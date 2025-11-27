@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using SuppManagerDB.BL.Interfaces;
 using SuppManagerDB.DAL.Interfaces;
 using SuppManagerDB.DTO;
@@ -23,7 +21,7 @@ namespace SuppManagerDB.BL.Concrete
 
         public Supplier Create(Supplier supplier)
         {
-            // ✨ Валідація
+            // Валідація
             if (string.IsNullOrWhiteSpace(supplier.Name))
                 throw new Exception("Назва постачальника не може бути пустою.");
 

@@ -23,7 +23,7 @@ namespace SuppManagerDB.WPF.Commands
 
         public void Execute(object? parameter)
         {
-            // 0 означає, що відкриваємо пусту форму для створення
+            // означає, що відкриваю пусту форму для створення
             var window = new SupplierAddWindow(_supplierManager);
             window.ShowDialog();
             _viewModel.RefreshSuppliers();

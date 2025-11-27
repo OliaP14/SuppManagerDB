@@ -1,5 +1,4 @@
 ﻿using SuppManagerDB.DTO;
-using System.Collections.Generic;
 
 namespace SuppManagerDB.BL.Interfaces
 {

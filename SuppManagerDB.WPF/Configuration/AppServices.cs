@@ -17,16 +17,16 @@ namespace SuppManagerDB.WPF.Configuration
             services.AddTransient<IUserDal, UserDal>();
             services.AddTransient<IUserPrivilegeDal, UserPrivilegeDal>();
             services.AddTransient<ISupplierDal, SupplierDal>();
-            services.AddTransient<IProductDal, ProductDal>();        // +
-            services.AddTransient<ICategoryDal, CategoryDal>();      // +
-            services.AddTransient<IManufacturerDal, ManufacturerDal>(); //+
+            services.AddTransient<IProductDal, ProductDal>();        
+            services.AddTransient<ICategoryDal, CategoryDal>();      
+            services.AddTransient<IManufacturerDal, ManufacturerDal>(); 
 
 
 
             // BL
             services.AddTransient<IAuthManager, AuthManager>();  
             services.AddTransient<ISupplierManager, SupplierManager>();
-            services.AddTransient<IProductManager, ProductManager>();       // +
+            services.AddTransient<IProductManager, ProductManager>();       
 
 
             return services.BuildServiceProvider();

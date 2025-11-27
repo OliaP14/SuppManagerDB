@@ -1,7 +1,5 @@
 ﻿using SuppManagerDB.BL.Interfaces;
 using SuppManagerDB.WPF.ViewModels;
-using SuppManagerDB.WPF.Windows;
-using System;
 using System.Windows;
 using System.Windows.Input;
 

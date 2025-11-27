@@ -21,7 +21,7 @@ namespace SuppManagerDB.WPF.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return parameter != null; // 💡 потрібен SupplierID
+            return parameter != null; // потрібен SupplierID
         }
 
         public void Execute(object? parameter)
@@ -29,7 +29,7 @@ namespace SuppManagerDB.WPF.Commands
             int supplierId = (int)parameter;
             var detailsWindow = new SupplierDetails(supplierId, _supplierManager);
 
-            detailsWindow.ShowDialog(); // 📌 модальне як у викладача
+            detailsWindow.ShowDialog(); 
             _viewModel.RefreshSuppliers();
         }
     }

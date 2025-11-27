@@ -20,13 +20,13 @@ namespace SuppManagerDB.WPF.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return parameter != null; // ❗ потрібен SupplierID
+            return parameter != null; //  потрібен SupplierID
         }
 
         public void Execute(object? parameter)
         {
             int supplierId = (int)parameter;
-            _supplierManager.SetStatus(supplierId, false); // ❌ блокування
+            _supplierManager.SetStatus(supplierId, false); //  блокування
             _viewModel.RefreshSuppliers();
         }
     }

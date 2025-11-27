@@ -10,10 +10,10 @@ namespace SuppManagerDB.BL.Interfaces
         bool Update(Supplier supplier);
         bool Delete(int supplierID);
 
-        // 🔎 Пошук
+        // Пошук
         List<Supplier> Search(string text);
 
-        // 🚫 Блокувати / Розблокувати
+        // Блокувати / Розблокувати
         bool SetStatus(int supplierID, bool isActive);
     }
 }

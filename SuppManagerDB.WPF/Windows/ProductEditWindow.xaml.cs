@@ -55,7 +55,7 @@ namespace SuppManagerDB.WPF.Windows
                 return;
             }
 
-            // 📝 Оновлюємо значення
+            // Оновлення значення
             _product.Name = txtName.Text.Trim();
             _product.Model = txtModel.Text.Trim();
             _product.Number = txtNumber.Text.Trim();
@@ -63,7 +63,7 @@ namespace SuppManagerDB.WPF.Windows
             _product.CategoryID = (int)cmbCategory.SelectedValue;
             _product.ManufacturerID = (int)cmbManufacturer.SelectedValue;
 
-            // 🔧 Спроба оновлення у БД
+            // Спроба оновлення у БД
             var success = _productManager.Update(_product);
 
             if (success)
