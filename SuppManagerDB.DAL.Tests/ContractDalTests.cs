@@ -37,7 +37,7 @@ namespace SuppManagerDB.DAL.Tests
             var user = new User
             {
                 UserName = "TestUser",
-                PasswordHash = "TestHash",
+                PasswordHash = "password123",
                 Role = "TestRole"
             };
             var createdUser = _userDal.Create(user);

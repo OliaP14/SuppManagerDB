@@ -1,0 +1,51 @@
+﻿<Window x:Class="SuppManagerDB.WPF.Windows.SupplierDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Постачальник" Height="350" Width="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#f0f2f5">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 📌 ФОРМА -->
+        <StackPanel>
+
+            <TextBlock Text="Назва компанії" Margin="0,0,0,3" FontSize="14"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="28" FontSize="14"/>
+
+            <TextBlock Text="Контакти (телефон/e-mail)" Margin="10,10,0,3" FontSize="14"/>
+            <TextBox Text="{Binding Info, UpdateSourceTrigger=PropertyChanged}" Height="28" FontSize="14"/>
+
+            <TextBlock Text="Локація" Margin="10,10,0,3" FontSize="14"/>
+            <TextBox Text="{Binding Location, UpdateSourceTrigger=PropertyChanged}" Height="28" FontSize="14"/>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
+                <CheckBox IsChecked="{Binding Status}" Content="Активний" FontSize="14"/>
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- 🎛 КНОПКИ -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Зберегти" Width="120" Height="35"
+                    Background="#003366" Foreground="White"
+                    Command="{Binding SaveSupplierCommand}"/>
+
+            <Button Content="Закрити" Width="80" Height="35" Margin="10,0,0,0"
+                    Background="#777" Foreground="White"
+                    Click="Close_Click"/>
+            
+            <Button Content="Товари постачальника"
+                    Width="149" Height="40" Margin="10,0,0,0"
+                    Background="#0066CC" Foreground="White"
+                    Click="OpenProducts_Click"/>
+
+        </StackPanel>
+        
+
+    </Grid>
+</Window>

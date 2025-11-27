@@ -10,5 +10,8 @@ namespace SuppManagerDB.DAL.Interfaces
         List<User> GetAll();
         bool Update(User user);
         bool Delete(int id);
+
+        // для логіну
+        User? GetByLogin(string login);
     }
 }

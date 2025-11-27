@@ -3,6 +3,7 @@ using SuppManagerDB.DAL.Concrete;
 using SuppManagerDB.DTO;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SuppManagerDB.DAL.Tests
 {
@@ -39,7 +40,7 @@ namespace SuppManagerDB.DAL.Tests
             var user = new User
             {
                 UserName = "getbyiduser",
-                PasswordHash = "pass",
+                PasswordHash = "password123",
                 Role = "User"
             };
 
@@ -57,7 +58,7 @@ namespace SuppManagerDB.DAL.Tests
             var user = new User
             {
                 UserName = "getalluser",
-                PasswordHash = "pass",
+                PasswordHash = "password123",
                 Role = "User"
             };
 
@@ -73,7 +74,7 @@ namespace SuppManagerDB.DAL.Tests
             var user = new User
             {
                 UserName = "updatetest",
-                PasswordHash = "pass",
+                PasswordHash = "password123",
                 Role = "User"
             };
 
@@ -96,7 +97,7 @@ namespace SuppManagerDB.DAL.Tests
             var user = new User
             {
                 UserName = "deletetest",
-                PasswordHash = "pass",
+                PasswordHash = "password123",
                 Role = "User"
             };
 

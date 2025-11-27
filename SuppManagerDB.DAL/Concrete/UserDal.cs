@@ -8,106 +8,142 @@ namespace SuppManagerDB.DAL.Concrete
     {
         public User Create(User user)
         {
-            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
-
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = "INSERT INTO Users (UserName, PasswordHash, Role) OUTPUT INSERTED.UserID VALUES (@UserName, @PasswordHash, @Role)";
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+                INSERT INTO Users (Login, Email, PasswordHash, Salt)
+                OUTPUT INSERTED.UserID
+                VALUES (@Login, @Email, @PasswordHash, @Salt);
+            ";
 
-            command.Parameters.AddWithValue("@UserName", user.UserName);
+            command.Parameters.AddWithValue("@Login", user.Login);
             command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
-            command.Parameters.AddWithValue("@Role", user.Role);
+            command.Parameters.AddWithValue("@Salt", user.Salt);
 
             user.UserID = (int)command.ExecuteScalar();
-
-            connection.Close();
-
             return user;
         }
 
         public List<User> GetAll()
         {
-
-            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
-
-            connection.Open();
-
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT UserID, UserName, PasswordHash, Role FROM Users";
-
-            SqlDataReader reader = command.ExecuteReader();
-
-            List<User> users = new List<User>();
-
-            while (reader.Read())
-            {
-                User user = new User
-                {
-                    UserID = (int)reader["UserID"],
-                    UserName = (string)reader["UserName"],
-                    PasswordHash = (string)reader["PasswordHash"],
-                    Role = (string)reader["Role"]
-                };
-                users.Add(user);
-            }
-            reader.Close();
-            connection.Close();
-            return users;
-        }
-
-        public bool Update(User user)
-        {
-            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
-            connection.Open();
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = "UPDATE Users SET UserName  = @UserName, PasswordHash = @PasswordHash, Role = @Role WHERE UserID = @UserID";
-
-            command.Parameters.AddWithValue("@UserName", user.UserName);
-            command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
-            command.Parameters.AddWithValue("@Role", user.Role);
-            command.Parameters.AddWithValue("@UserID", user.UserID);
-            int rowsAffected = command.ExecuteNonQuery();
-            connection.Close();
-            return rowsAffected > 0;
-        }
-
-        public bool Delete(int UserID)
-        {
-            SqlConnection connection = new SqlConnection(Constants.DB_CONNECTION);
-            connection.Open();
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = "DELETE FROM Users WHERE UserID = @UserID";
-            command.Parameters.AddWithValue("@UserID", UserID);
-            int rowsAffected = command.ExecuteNonQuery();
-            connection.Close();
-            return rowsAffected > 0;
-        }
-
-        public User GetById(int UserID)
-        {
-            User user = null;
+            var users = new List<User>();
 
             using var connection = new SqlConnection(Constants.DB_CONNECTION);
             connection.Open();
 
             using var command = connection.CreateCommand();
-            command.CommandText = "SELECT UserID, UserName, PasswordHash, Role FROM Users WHERE UserID = @UserID";
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.CommandText = @"
+                SELECT UserID, Login, Email, PasswordHash, Salt, RowInsertTime, RowUpdateTime
+                FROM Users;
+            ";
 
             using var reader = command.ExecuteReader();
-            if (reader.Read())
+            while (reader.Read())
             {
-                user = new User
+                users.Add(new User
                 {
                     UserID = (int)reader["UserID"],
-                    UserName = (string)reader["UserName"],
-                    PasswordHash = (string)reader["PasswordHash"],
-                    Role = (string)reader["Role"]
-                };
+                    Login = (string)reader["Login"],
+                    PasswordHash = (byte[])reader["PasswordHash"],
+                    Salt = (Guid)reader["Salt"],
+                    RowInsertTime = (DateTime)reader["RowInsertTime"],
+                    RowUpdateTime = reader["RowUpdateTime"] == DBNull.Value ? null : (DateTime?)reader["RowUpdateTime"]
+                });
             }
-
-            return user;
+            return users;
         }
-    }  
+
+        public bool Update(User user)
+        {
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+                UPDATE Users
+                SET Login = @Login,
+                    Email = @Email,
+                    PasswordHash = @PasswordHash,
+                    Salt = @Salt,
+                    RowUpdateTime = GETDATE()
+                WHERE UserID = @UserID;
+            ";
+
+            command.Parameters.AddWithValue("@Login", user.Login);
+            command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
+            command.Parameters.AddWithValue("@Salt", user.Salt);
+            command.Parameters.AddWithValue("@UserID", user.UserID);
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
+        public bool Delete(int userID)
+        {
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = "DELETE FROM Users WHERE UserID = @UserID";
+            command.Parameters.AddWithValue("@UserID", userID);
+
+            return command.ExecuteNonQuery() > 0;
+        }
+
+        public User GetById(int userID)
+        {
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+                SELECT UserID, Login, Email, PasswordHash, Salt, RowInsertTime, RowUpdateTime
+                FROM Users
+                WHERE UserID = @UserID;
+            ";
+            command.Parameters.AddWithValue("@UserID", userID);
+
+            using var reader = command.ExecuteReader();
+            if (!reader.Read()) return null;
+
+            return new User
+            {
+                UserID = (int)reader["UserID"],
+                Login = (string)reader["Login"],
+                PasswordHash = (byte[])reader["PasswordHash"],
+                Salt = (Guid)reader["Salt"],
+                RowInsertTime = (DateTime)reader["RowInsertTime"],
+                RowUpdateTime = reader["RowUpdateTime"] == DBNull.Value ? null : (DateTime?)reader["RowUpdateTime"]
+            };
+        }
+
+        // 👉 НОВИЙ МЕТОД ДЛЯ ЛОГІНУ
+        public User? GetByLogin(string login)
+        {
+            using var connection = new SqlConnection(Constants.DB_CONNECTION);
+            connection.Open();
+
+            using var command = connection.CreateCommand();
+            command.CommandText = @"
+                SELECT UserID, Login, Password, Salt, RowInsertTime, RowUpdateTime
+                FROM Users
+                WHERE Login = @Login;
+            ";
+            command.Parameters.AddWithValue("@Login", login);
+
+            using var reader = command.ExecuteReader();
+            if (!reader.Read()) return null;
+
+            return new User
+            {
+                UserID = (int)reader["UserID"],
+                Login = (string)reader["Login"],
+                PasswordHash = (byte[])reader["Password"],
+                Salt = (Guid)reader["Salt"],
+                RowInsertTime = (DateTime)reader["RowInsertTime"],
+                RowUpdateTime = reader["RowUpdateTime"] == DBNull.Value ? null : (DateTime?)reader["RowUpdateTime"]
+            };
+        }
+    }
 }

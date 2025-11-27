@@ -6,7 +6,7 @@ namespace SuppManagerApp
     internal class Program
     {
         // Connection to the Database
-        static readonly string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True";  
+        static readonly string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SuppManagerDB;Integrated Security=True;Encrypt=True";
 
         static void Main(string[] args)
         {
@@ -115,43 +115,43 @@ namespace SuppManagerApp
                 }
                 else if (userInput == "3")
                 {
-                    UpdateUser(); 
+                    UpdateUser();
                 }
                 else if (userInput == "4")
                 {
-                    DeleteUser();    
+                    DeleteUser();
                 }
                 else if (userInput == "17")
                 {
-                    ShowAllCategories();                   
+                    ShowAllCategories();
                 }
                 else if (userInput == "18")
                 {
-                    AddCategory();                    
+                    AddCategory();
                 }
                 else if (userInput == "20")
                 {
-                    DeleteCategory();                    
+                    DeleteCategory();
                 }
                 else if (userInput == "19")
                 {
-                    UpdateCategory();                    
+                    UpdateCategory();
                 }
                 else if (userInput == "25")
                 {
-                    ShowAllContracts();                    
+                    ShowAllContracts();
                 }
                 else if (userInput == "26")
                 {
-                    AddContract();                    
+                    AddContract();
                 }
                 else if (userInput == "28")
                 {
-                    DeleteContract();                    
+                    DeleteContract();
                 }
                 else if (userInput == "27")
                 {
-                    UpdateContract();                    
+                    UpdateContract();
                 }
                 else if (userInput == "11")
                 {
@@ -161,7 +161,7 @@ namespace SuppManagerApp
                 {
                     UpdateCaracteristic();
                 }
-                else if (userInput== "23")
+                else if (userInput == "23")
                 {
                     UpdateManufacturer();
                 }
@@ -176,7 +176,7 @@ namespace SuppManagerApp
 
 
             }
-            
+
         }
 
         private static void UpdateManufacturer()
@@ -763,7 +763,7 @@ namespace SuppManagerApp
 
             foreach (var product in products)
             {
-                Console.WriteLine($"ID: {product.ProductID}, Name: {product.Name}, Model: {product.Model}, Number: {product.Number}, Price: {product.Price}, SupplierID: {product.SupplierID}, CategoryID: {product.CategoryID}, ManufacturerID: { product.ManufacturerID}");
+                Console.WriteLine($"ID: {product.ProductID}, Name: {product.Name}, Model: {product.Model}, Number: {product.Number}, Price: {product.Price}, SupplierID: {product.SupplierID}, CategoryID: {product.CategoryID}, ManufacturerID: {product.ManufacturerID}");
             }
         }
 
@@ -781,7 +781,6 @@ namespace SuppManagerApp
 
     }
 }
-    
-      
 
- 
+
+

@@ -10,5 +10,6 @@ namespace SuppManagerDB.DAL.Interfaces
         Supplier GetById(int SupplierID);
         bool Update(Supplier supplier);
         bool Delete(int SupplierID);
+        bool UpdateSupplierStatus(Supplier supplier);
     }
 }
