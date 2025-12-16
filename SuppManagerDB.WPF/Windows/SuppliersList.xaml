@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Постачальники" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
-        Background="#f0f2f5">
+        Background="#e6ffff">
 
     <Grid Margin="10">
 
@@ -28,9 +28,9 @@
             <Button
             Content="Вийти"
             Width="101" Height="38"
-            Background="#003366"
-            Foreground="White"
-            FontWeight="SemiBold"
+            Background="#00b3b3"
+            Foreground="Black"
+            FontWeight="Bold"
             Margin="200,0,0,0"
             Click="Logout_Click"/>
             

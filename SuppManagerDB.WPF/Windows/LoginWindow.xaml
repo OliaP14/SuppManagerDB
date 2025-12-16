@@ -5,7 +5,7 @@
         Height="320" Width="480"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#f0f2f5">
+        Background="#e6ffff">
 
     <Grid Margin="40">
 
@@ -25,7 +25,7 @@
                    Margin="0,0,0,5" Width="170"/>
 
         <!-- Поля -->
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" Height="157" >
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" >
 
             <TextBlock Text="Логін" FontSize="14" Foreground="#444" Margin="0 17 0 4"/>
             <TextBox x:Name="txtLogin" Height="32" FontSize="15" Padding="5" />
@@ -48,6 +48,7 @@
                 HorizontalAlignment="Center"
                 Margin="0,18,0,0"
                 Click="Login_Click"/>
+
     </Grid>
 
 </Window>

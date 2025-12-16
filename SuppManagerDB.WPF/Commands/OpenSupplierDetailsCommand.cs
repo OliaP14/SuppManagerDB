@@ -1,4 +1,5 @@
-﻿using SuppManagerDB.BL.Interfaces;
+﻿// Bікно деталей постачальника
+using SuppManagerDB.BL.Interfaces;
 using SuppManagerDB.WPF.ViewModels;
 using SuppManagerDB.WPF.Windows;
 using System;

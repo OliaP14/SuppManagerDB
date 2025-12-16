@@ -12,7 +12,7 @@ namespace SuppManagerDB.WPF
         // DI контейнер
         public static ServiceProvider Services { get; private set; }
 
-        // 🔐 Поточний користувач після логіну
+        // Поточний користувач після логіну
         public static User? CurrentUser { get; set; }
 
         public App()

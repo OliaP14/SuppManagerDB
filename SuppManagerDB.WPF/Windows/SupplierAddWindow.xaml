@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Новий постачальник" Height="350" Width="500"
         WindowStartupLocation="CenterScreen"
-        Background="#f0f2f5">
+        Background="#e6ffff">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>

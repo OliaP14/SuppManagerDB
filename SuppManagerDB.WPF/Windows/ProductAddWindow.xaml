@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Додати товар" Height="502" Width="520"
         WindowStartupLocation="CenterScreen"
-        Background="#f0f2f5">
+        Background="#e6ffff">
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -20,7 +20,7 @@
             <TextBlock Text="Модель" Margin="0,0,0,3" FontSize="14"/>
             <TextBox x:Name="txtModel" Height="28" Margin="0,0,0,10"/>
 
-            <TextBlock Text="Номер / артикул" Margin="0,0,0,3" FontSize="14"/>
+            <TextBlock Text="Кількість штук" Margin="0,0,0,3" FontSize="14"/>
             <TextBox x:Name="txtNumber" Height="28" Margin="0,0,0,10"/>
 
             <TextBlock Text="Ціна" Margin="0,0,0,3" FontSize="14"/>

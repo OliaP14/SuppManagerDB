@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Товари постачальника" Width="800" Height="450"
         WindowStartupLocation="CenterScreen"
-        Background="#F0F2F5">
+        Background="#e6ffff">
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -16,7 +16,7 @@
                   AutoGenerateColumns="True"
                   IsReadOnly="True"
                   SelectionMode="Single"
-                  Margin="0,0,0,10"/>
+                  Margin="0,0,0,10" SelectionChanged="ProductsGrid_SelectionChanged"/>
 
         <!--  Кнопки -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">

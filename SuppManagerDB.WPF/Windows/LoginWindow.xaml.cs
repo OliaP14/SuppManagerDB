@@ -29,8 +29,10 @@ namespace SuppManagerDB.WPF.Windows
 
             if (user == null)
             {
-                txtError.Text = "Невірний логін або пароль.";
+                MessageBox.Show("Невірний логін або пароль.");
+                //txtError.Text = "Невірний логін або пароль.";
                 return;
+                
             }
 
             if (!_authManager.HasPrivilege(user.UserID, "SupplierManager"))
@@ -51,6 +53,41 @@ namespace SuppManagerDB.WPF.Windows
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

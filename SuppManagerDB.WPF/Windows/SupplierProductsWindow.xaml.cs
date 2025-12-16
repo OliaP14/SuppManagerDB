@@ -64,5 +64,10 @@ namespace SuppManagerDB.WPF.Windows
         {
             Close();
         }
+
+        private void ProductsGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
