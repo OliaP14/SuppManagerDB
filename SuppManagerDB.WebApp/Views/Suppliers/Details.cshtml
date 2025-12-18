@@ -1,0 +1,21 @@
+﻿@model SupplierDetailsModel
+
+<h2>Supplier Details</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Name</dt>
+    <dd class="col-sm-9">@Model.Name</dd>
+
+    <dt class="col-sm-3">Info</dt>
+    <dd class="col-sm-9">@Model.Info</dd>
+
+    <dt class="col-sm-3">Location</dt>
+    <dd class="col-sm-9">@Model.Location</dd>
+
+    <dt class="col-sm-3">Status</dt>
+    <dd class="col-sm-9">
+        @(Model.Status ? "Active" : "Inactive")
+    </dd>
+</dl>
+
+<a asp-action="Index">Back to list</a>

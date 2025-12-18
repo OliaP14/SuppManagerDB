@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SuppManagerDB.DTO.Supplier>
+
+@{
+    ViewData["Title"] = "Suppliers";
+}
+
+<h1>Suppliers</h1>
+
+<p>
+    <a asp-action="Create">Add New Supplier</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.SupplierID)</th>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
+            <th>@Html.DisplayNameFor(m => m.Info)</th>
+            <th>@Html.DisplayNameFor(m => m.Location)</th>
+            <th>@Html.DisplayNameFor(m => m.Status)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SupplierID</td>
+                <td>@item.Name</td>
+                <td>@item.Info</td>
+                <td>@item.Location</td>
+                <td>@(item.Status ? "Active" : "Inactive")</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SupplierID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SupplierID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuppManagerDB.WPF", "SuppMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuppManagerDB.BL.Tests", "SuppManagerDB.BL.Tests\SuppManagerDB.BL.Tests.csproj", "{257BD280-F49C-4144-80A6-A89B760027A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuppManagerDB.WebApp", "SuppManagerDB.WebApp\SuppManagerDB.WebApp.csproj", "{79C7DDAC-25A9-431D-A2DF-2676347918ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuppManagerDB.WebApp.Tests", "SuppManagerDB.WebApp.Tests\SuppManagerDB.WebApp.Tests.csproj", "{45B9102F-AAE0-4C04-8439-0B88DF8C441B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,14 @@ Global
 		{257BD280-F49C-4144-80A6-A89B760027A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{257BD280-F49C-4144-80A6-A89B760027A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{257BD280-F49C-4144-80A6-A89B760027A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79C7DDAC-25A9-431D-A2DF-2676347918ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79C7DDAC-25A9-431D-A2DF-2676347918ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79C7DDAC-25A9-431D-A2DF-2676347918ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79C7DDAC-25A9-431D-A2DF-2676347918ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B9102F-AAE0-4C04-8439-0B88DF8C441B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B9102F-AAE0-4C04-8439-0B88DF8C441B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B9102F-AAE0-4C04-8439-0B88DF8C441B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B9102F-AAE0-4C04-8439-0B88DF8C441B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
